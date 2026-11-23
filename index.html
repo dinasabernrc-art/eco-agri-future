@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ECO-AGRI FUTURE | International Workshop on Climate-Smart Agriculture</title>
+  <meta name="description" content="International Workshop on Climate-Smart Agriculture and Technological Innovations for Sustainable Development (ANSO-CR-PP-2022-10) - November 25, 2026, NRC, Egypt." />
+  <meta property="og:title" content="ECO-AGRI FUTURE – International Scientific Workshop" />
+  <meta property="og:description" content="From Ecological Understanding to Technological Innovation. Hosted at National Research Centre (NRC), Egypt." />
+  <meta property="og:type" content="website" />
+
+  <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            forest: '#0F5132',
+            darkgreen: '#073B32',
+            emerald: '#157347',
+            teal: '#0D9488',
+            cream: '#F7F5EA',
+            gold: '#C9A227',
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React & ReactDOM + Babel -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-up {
+      animation: fadeUp 0.7s ease-out forwards;
+    }
+    .hero-bg {
+      background-image: linear-gradient(to right, rgba(7, 59, 50, 0.93), rgba(15, 81, 50, 0.85)),
+                        url('https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body class="bg-cream text-darkgreen antialiased selection:bg-gold selection:text-white">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    const WORKSHOP_DATA = {
+      identity: {
+        shortName: "ECO-AGRI FUTURE",
+        badge: "INTERNATIONAL WORKSHOP",
+        fullTitle: "International Workshop on Climate-Smart Agriculture and Technological Innovations for Sustainable Development",
+        theme: "From Ecological Understanding to Technological Innovation",
+        tagline: "Innovative Solutions for a Sustainable Future.",
+        date: "Wednesday, November 25, 2026",
+        workshopStart: "10:00 AM",
+        timeRange: "10:00 AM – 2:45 PM",
+        venue: "Hall of the NRC Researchers' Club, National Research Centre (NRC), Egypt.",
+        venueShort: "Hall of the NRC Researchers' Club",
+        institution: "National Research Centre (NRC), Egypt"
+      },
+      logos: {
+        ansoLogoUrl: "ANSO-logo_1.jpeg",
+        nrcLogoUrl: "NRC Logo.jpeg",
+        partners: [
+          {
+            name: "Alliance of International Science Organizations (ANSO)",
+            role: "Funding Organization (ANSO-CR-PP-2022-10)",
+            logoUrl: "ANSO-logo_1.jpeg"
+          },
+          {
+            name: "National Research Centre (NRC), Egypt",
+            role: "Host & ANSO Member Institution (PI)",
+            logoUrl: "NRC Logo.jpeg"
+          },
+          {
+            name: "Institute of Science and Development, CAS & South China Agricultural University",
+            role: "China Consortium Partners",
+            logoUrl: "South China Agricultural University.jpeg"
+          },
+          {
+            name: "Global Environmental Institute (GEI), China",
+            role: "China Consortium Partner",
+            logoUrl: "Global Environmental Institute (GEI), China.jpeg"
+          },
+          {
+            name: "Federal University of Rondonópolis (UFR), Brazil",
+            role: "Brazil Consortium Partner",
+            logoUrl: "Federal University of Rondonópolis (UFR).jpeg"
+          },
+          {
+            name: "University of the Republic, Uruguay",
+            role: "Uruguay Consortium Partner (ANSO Member)",
+            logoUrl: "University of the Republic, Uruguay logo.jpeg"
+          }
+        ]
+      },
+      project: {
+        title: "Understanding Ecology-Agriculture Interrelationship under Environmental Challenges and Developing Sustainable Production Models through Climate Smart Agricultural Practices Combining Technology Intervention",
+        number: "ANSO-CR-PP-2022-10",
+        duration: "1/12/2024 – 30/11/2027 (2024–2027)",
+        piName: "Prof. Zakaria Fouad Fawzy",
+        piAffiliation: "Professor, Agricultural and Biological Research Institute, National Research Centre, Egypt",
+        summary: "A collaborative international research project uniting six organizations across four countries to examine ecology-agriculture interrelationships under environmental challenges and mainstream climate-smart agricultural practices combined with technological intervention.",
+        countries: [
+          { name: "Egypt", flag: "EG.jpeg", role: "National Research Centre (PI)" },
+          { name: "China", flag: "CH.jpeg", role: "CAS, SCAU & GEI" },
+          { name: "Brazil", flag: "BR.jpeg", role: "Federal Univ. of Rondonópolis" },
+          { name: "Uruguay", flag: "UY.jpeg", role: "University of the Republic" }
+        ],
+        objectives: [
+          "Monitor and assess crop productivity using modern and smart irrigation that reduces water use and enhances crop yield and quality.",
+          "Evaluate crop productivity using nanotechnology in nano-fertilizers and nano-pesticides for higher efficiency and lower input quantities.",
+          "Analyze digitalization and precision agriculture via satellite information and remote sensing for food security.",
+          "Develop a mobile application displaying agro-meteorological station climate data and practical recommendations for farmers.",
+          "Design and evaluate animal health control measures for sustainable ruminant production systems under climate change.",
+          "Understand hazard mitigation and biodiversity benefits of climate-smart production models via the Ecological Risk Assessment (ERA) tool.",
+          "Reduce chemical residues and greenhouse gas (GHG) emissions through smart water, fertilization, pest, and organic waste management.",
+          "Develop integrated pest control systems (mechanical, biological, and ecological) while protecting soil and genetic resources."
+        ],
+        themes: [
+          { title: "Smart and Precision Irrigation", icon: "droplets" },
+          { title: "Nanotechnology in Fertilizers & Pesticides", icon: "atom" },
+          { title: "Digital Agriculture & Remote Sensing", icon: "satellite" },
+          { title: "Internet of Things (IoT) & Artificial Intelligence (AI)", icon: "cpu" },
+          { title: "Climate Change Adaptation & Mitigation", icon: "cloud-sun" },
+          { title: "Ecological Risk Assessment (ERA)", icon: "shield-check" },
+          { title: "Biodiversity & Ecosystem Services", icon: "sprout" },
+          { title: "Sustainable Crop & Livestock Production", icon: "wheat" },
+          { title: "Agricultural Waste Management & Resource Efficiency", icon: "recycle" }
+        ],
+        sdgs: ["SDG 1", "SDG 2", "SDG 3", "SDG 6", "SDG 8", "SDG 12", "SDG 13", "SDG 15", "SDG 17"]
+      },
+      aboutWorkshop: {
+        description: "Organized within the framework of ANSO Collaborative Research Project No. ANSO-CR-PP-2022-10, ECO-AGRI FUTURE brings together researchers and specialists to share scientific insights on linking ecological conservation, climate-smart agriculture, and technological innovation for sustainable development.",
+        pillars: [
+          {
+            title: "Climate Change & Agricultural Productivity",
+            desc: "Examining climate-induced challenges and scientifically evidenced practices that strengthen resilience, adaptation, and mitigation.",
+            icon: "thermometer-sun"
+          },
+          {
+            title: "Ecological Sustainability & Biodiversity",
+            desc: "Evaluating agro-ecosystems, biodiversity conservation, nutrient and emission dynamics, and Ecological Risk Assessment (ERA).",
+            icon: "leaf"
+          },
+          {
+            title: "Smart Agricultural Technologies",
+            desc: "Advancing smart irrigation, precision agriculture, remote sensing, IoT/AI tools, and nano-enabled inputs.",
+            icon: "wifi"
+          },
+          {
+            title: "Resource-Efficient Production Systems",
+            desc: "Optimizing water, soil, and organic waste management to lower environmental footprints and support farm livelihoods.",
+            icon: "gauge"
+          },
+          {
+            title: "International Scientific Cooperation",
+            desc: "Fostering knowledge exchange, peer collaboration, and South-South and cross-border research partnerships.",
+            icon: "globe"
+          }
+        ]
+      },
+      openingBlock: {
+        registration: {
+          time: "10:00–10:30 AM",
+          duration: "30 MIN",
+          title: "Registration"
+        },
+        opening: {
+          time: "10:30–11:00 AM",
+          duration: "30 MIN",
+          title: "Workshop Opening & Welcome Remarks",
+          remarks: [
+            {
+              name: "Prof. Dr. Wafaa Abdel-Rahim",
+              role: "Dean of the Agricultural and Biological Research Institute"
+            }
+          ]
+        }
+      },
+      schedule: [
+        {
+          type: "lecture",
+          number: "01",
+          time: "11:00–11:30 AM",
+          duration: "30 MIN",
+          speaker: "Prof. Dr. Zakaria Fouad Fawzy",
+          affiliation: "Professor, Agricultural and Biological Research Institute, National Research Centre, member of Global Alliance for Climate Smart Agriculture, Food and Agriculture Organization, UN, Principal Investigator of the Project",
+          country: "Egypt",
+          flag: "EG.jpeg",
+          title: "ECO-AGRI FUTURE: Integrating Ecology, Climate-Smart Agriculture, and Technology for Sustainable Production",
+          portraitUrl: "Zakaria Fouad Fawzy.jpeg",
+          bio: "Professor and researcher at the National Research Centre (Egypt) and recognized expert in vegetable crop production, protected agriculture, soilless culture and climate-smart agriculture. Principal Investigator of numerous national and international projects, with 70 peer-reviewed publications, 8 books published internationally, 2 granted patents, and an extensive record of consultancy, international scientific cooperation and postgraduate supervision."
+        },
+        {
+          type: "transition",
+          label: "5-MINUTE TRANSITION BREAK (11:30–11:35 AM)"
+        },
+        {
+          type: "lecture",
+          number: "02",
+          time: "11:35 AM–12:00 PM",
+          duration: "25 MIN",
+          speaker: "Prof. Dr. Domingos Sávio Barbosa",
+          affiliation: "Full Professor, Biologist, Ph.D. in Environmental Engineering | Coordinator of Environmental Technology and Management Laboratory (LTGA), Federal University of Rondonópolis (UFR), Brazil",
+          country: "Brazil",
+          flag: "BR.jpeg",
+          title: "Understanding the Hazards Mitigation and Biodiversity Benefits of Climate-Smart Production Models via the Ecological Risk Assessment (ERA) Tool",
+          portraitUrl: "Domingos Sávio Barbosa.jpeg",
+          bio: "Domingos Sávio Barbosa is a Full Professor at the Federal University of Rondonópolis (UFR), Brazil. He holds a B.Sc. in Biological Sciences from the Federal University of Mato Grosso do Sul (UFMS, 2000), and an M.Sc. (2003) and Ph.D. (2008) in Environmental Engineering Sciences from the University of São Paulo (USP), with a doctoral research stay at the University of Coimbra, Portugal. He completed postdoctoral work at Aplysia Environmental Technology, where he set up a terrestrial ecotoxicology laboratory (2009–2010), and a second postdoc in Statistics and Artificial Intelligence (2023–2024). An ecologist focused on aquatic ecology, he works mainly on ecological risk assessment and environmental restoration. He has led projects on solid waste management and on rural and urban sanitation. He serves as an ad hoc expert for the Mato Grosso State Public Prosecutor's Office and the Rondonópolis environmental court. He has also served on the São Lourenço River Basin Committee, the Rondonópolis Municipal Environmental Council, and the Forum Against Pesticide Use (2016–2024). He supervises the Environmental Technology and Management Laboratory (LTGA, since 2013) and coordinates the Environmental Pollution Laboratory of NUPEC-FINEP (since 2016). He has also coordinated the undergraduate program in Agricultural and Environmental Engineering (2018–2019) and the graduate program in Environmental Management and Technology (2019–2020), and he managed technology transfer at UFR (2021–2023)."
+        },
+        {
+          type: "transition",
+          label: "5-MINUTE TRANSITION BREAK (12:00–12:05 PM)"
+        },
+        {
+          type: "lecture",
+          number: "03",
+          time: "12:05–12:30 PM",
+          duration: "25 MIN",
+          speaker: "Dr. Sameh El-Sawy",
+          affiliation: "Associate Professor, Vegetables Production, Smart Agriculture, Greenhouses",
+          country: "Egypt",
+          flag: "EG.jpeg",
+          title: "Agri-Tech as an Approach to Climate-Smart Agriculture for Sustainable Development",
+          portraitUrl: "Sameh El-Sawy.jpeg",
+          bio: "Dr. Sameh Mohamed Mohamed El-Sawy is an Associate Professor at the Agricultural and Biological Research Institute, National Research Centre (NRC) in Cairo, Egypt. He holds a Master’s degree in Strawberry Cultivation and Productivity and a PhD in Rationalizing Water Consumption for Tomato Plants under Arid/Sandy Soil Conditions (2016). His international academic record features significant participation in China, including three professional training programs and a prestigious tenure under the Talented Young Scientist Program (TYSP) at Ningxia University (2017–2018), where he focused on smart saving-irrigation technology in arid regions and conducted field trials in Tongxin County. A seasoned researcher, Dr. El-Sawy has contributed to 15 local and 6 international projects, serving as the Principal Investigator for many projects; 1- the NRC-funded project on deficit irrigation techniques, 2- using modern technology in greenhouses for producing seedlings and vegetable crops in soilless cultures and 3- sustainable development for ASRT New Valley farm using new technology funded by Academy of Scientific Research and Technology (ASRT). Furthermore, Dr. Sameh worked as Corresponding Investigator for aquaponics systems in saline arid regions (ASRT-funded), and climate-smart practices project funded by ANSO (China). He also Executive Manager for a multi-year Mediterranean greenhouse optimization initiative international project (PRIMA-funded). Moreover, he is authored 40 papers in peer-reviewed international journals, contributions to 15 national and international conferences, and active supervision of postgraduate students in Egypt and China, he also leads agricultural operations as the Head of Vegetable Production at the NRC Farm in El-Noubaria and Director of the Model Research Farm in Al-Moghra under the Academy of Scientific Research and Technology."
+        },
+        {
+          type: "transition",
+          label: "5-MINUTE TRANSITION BREAK (12:30–12:35 PM)"
+        },
+        {
+          type: "lecture",
+          number: "04",
+          time: "12:35–1:00 PM",
+          duration: "25 MIN",
+          speaker: "Prof. Dr. Kunzheng Cai",
+          affiliation: "South China Agricultural University, China",
+          country: "China",
+          flag: "CH.jpeg",
+          title: "Developing Ecological Low-Carbon Agriculture to Enhance Agricultural Climate Resilience",
+          portraitUrl: "Kunzheng Cai.jpeg",
+          bio: "Kunzheng Cai — Professor, College of Natural Resources and Environment, South China Agricultural University, Guangzhou 510642, China (kzcai@scau.edu.cn). Research focuses on agricultural ecology, soil health management, and crop stress physiological ecology, with more than 70 academic papers published in international journals."
+        },
+        {
+          type: "break",
+          time: "1:00–1:20 PM",
+          title: "MID-WORKSHOP COFFEE & NETWORKING BREAK",
+          duration: "20 MINUTES"
+        },
+        {
+          type: "lecture",
+          number: "05",
+          time: "1:20–1:45 PM",
+          duration: "25 MIN",
+          speaker: "Prof. Dr. Fadl Hashem",
+          affiliation: "Executive Director of Climate Change Information Center and Supervisor of Digital Transformation, Ministry of Agriculture",
+          country: "Egypt",
+          flag: "EG.jpeg",
+          title: "Climate-Smart Agriculture: A Strategic Pathway for Climate Change Adaptation and Mitigation",
+          portraitUrl: "Fadl Hashem.jpeg",
+          bio: ""
+        },
+        {
+          type: "transition",
+          label: "5-MINUTE TRANSITION BREAK (1:45–1:50 PM)"
+        },
+        {
+          type: "lecture",
+          number: "06",
+          time: "1:50–2:15 PM",
+          duration: "25 MIN",
+          speaker: "Prof. Shamaila Zia G.",
+          affiliation: "Professor of Agricultural Engineering, University of Hohenheim, Germany",
+          country: "Germany",
+          flag: "DE.jpeg",
+          title: "Digital Technologies for Resource-Efficient Agriculture",
+          portraitUrl: "Shamaila Zia G..jpeg",
+          bio: "Shamaila Zia: Agricultural engineer and research scientist with more than 15 years of academic and research experience in sustainable agricultural production systems, with particular emphasis on the efficient use of water and energy. Her research integrates agricultural engineering, plant science, sensor-based technologies and modelling to develop climate-resilient and resource-efficient agricultural production systems. Her scientific expertise encompasses irrigation and water management, renewable energy applications in agriculture, plant stress physiology, sensor-based phenotyping, imaging technologies, modelling, and water–food–energy nexus approaches. She has extensive experience in developing and coordinating interdisciplinary research projects, preparing research proposals, collaborating with national and international partners, publishing scientific results, and teaching and supervising bachelor’s and master’s students. Her academic profile combines fundamental and applied research with technology development and practical implementation. Her future research focuses on the interaction between water availability, energy demand, crop productivity and climate resilience, with particular emphasis on digital technologies and integrated resource management in agricultural systems."
+        },
+        {
+          type: "transition",
+          label: "5-MINUTE TRANSITION BREAK (2:15–2:20 PM)"
+        },
+        {
+          type: "lecture",
+          number: "07",
+          time: "2:20–2:45 PM",
+          duration: "25 MIN",
+          speaker: "Assoc. Prof. Dr. Murat Topal",
+          affiliation: "Department of Environmental Engineering, Munzur University, Turkey",
+          country: "Turkey",
+          flag: "TR.jpeg",
+          title: "Smart Irrigation",
+          portraitUrl: "Murat Topal.jpeg",
+          bio: "The research area of Assoc. Prof. Dr. Murat Topal is Environmental Engineering at Munzur University. Since his graduate studies, he has focused on water and wastewater treatment, heavy metal pollution, food safety, phytoremediation, and environmental risk assessment. His research centers particularly on the bioaccumulation of Strategic and Critical Raw Materials (SCRMs) in plants, phytomining, the calculation of environmental ecological and health risk indices, and environmental modeling based on statistical methods and machine learning (e.g., PCA, HCA, ANN). He has authored numerous indexed journal articles, projects, and scientific publications at both national and international levels."
+        }
+      ],
+      programEnd: "PROGRAM ENDS: 2:45 PM.",
+      contact: {
+        address: "National Research Centre (NRC), El Buhouth St., Dokki, Giza, Egypt",
+        mapEmbedUrl: "https://maps.google.com/maps?q=30.0359669,31.2081318&hl=en&z=17&output=embed",
+        mapExternalUrl: "https://www.google.com/maps/place//@30.0359669,31.2055569,17z/data=!4m6!1m5!3m4!2zMzDCsDAyJzA5LjUiTiAzMcKwMTInMjkuMyJF!8m2!3d30.0359669!4d31.2081318?hl=en&entry=ttu"
+      },
+      registrationForm: {
+        actionUrl: "https://docs.google.com/forms/d/e/1FAIpQLSdlC3RJ7J8dMXMH7qBU1-hi2oCEtPZJNQR09S15BSQAcp-VgQ/formResponse",
+        entries: {
+          fullName: "entry.1715315093",
+          email: "entry.333861688",
+          institution: "entry.1791789868",
+          country: "entry.1517883646",
+          affiliation: "entry.1807013038"
+        }
+      }
+    };
+
+    const FlagImage = ({ src, alt, className = "w-5 h-3.5" }) => {
+      if (!src) return null;
+      return (
+        <img
+          src={src}
+          alt={alt || "Country flag"}
+          className={`${className} object-cover rounded-[2px] border border-white/25 inline-block shrink-0`}
+        />
+      );
+    };
+
+    const Icon = ({ name, className = "w-5 h-5" }) => {
+      useEffect(() => {
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+      });
+      return <i data-lucide={name} className={className}></i>;
+    };
+
+    const Navbar = () => {
+      const [mobileOpen, setMobileOpen] = useState(false);
+      const navLinks = [
+        { label: "Home", href: "#home" },
+        { label: "About", href: "#about" },
+        { label: "Program", href: "#program" },
+        { label: "Speakers", href: "#speakers" },
+        { label: "ANSO Project", href: "#project" },
+        { label: "Partners", href: "#partners" },
+        { label: "Venue", href: "#venue" },
+        { label: "Register", href: "#register" },
+      ];
+
+      return (
+        <header className="sticky top-0 z-50 bg-darkgreen/95 backdrop-blur-md border-b border-gold/30 text-white shadow-lg">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-20">
+              <a href="#home" className="flex items-center space-x-3 group">
+                <div className="w-11 h-11 rounded-lg bg-forest border border-gold/60 flex items-center justify-center overflow-hidden shadow-inner">
+                  {WORKSHOP_DATA.logos.ansoLogoUrl ? (
+                    <img src={WORKSHOP_DATA.logos.ansoLogoUrl} alt="ANSO Logo" className="w-full h-full object-contain p-1" />
+                  ) : (
+                    <span className="text-[10px] font-bold tracking-wider text-gold text-center leading-tight">ANSO<br/>LOGO</span>
+                  )}
+                </div>
+                <div>
+                  <span className="font-serif text-xl font-bold tracking-wide text-white group-hover:text-gold transition">
+                    {WORKSHOP_DATA.identity.shortName}
+                  </span>
+                  <p className="text-[11px] uppercase tracking-widest text-emerald-300">
+                    {WORKSHOP_DATA.project.number}
+                  </p>
+                </div>
+              </a>
+
+              <nav className="hidden lg:flex items-center space-x-6 text-sm font-medium">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="text-gray-200 hover:text-gold transition-colors py-1"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+
+              <button
+                onClick={() => setMobileOpen(!mobileOpen)}
+                aria-label="Toggle Navigation"
+                className="lg:hidden p-2 rounded-md text-gray-200 hover:text-gold focus:outline-none"
+              >
+                <Icon name={mobileOpen ? "x" : "menu"} className="w-6 h-6" />
+              </button>
+            </div>
+          </div>
+
+          {mobileOpen && (
+            <div className="lg:hidden bg-darkgreen border-t border-white/10 px-4 pt-3 pb-6 space-y-2">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-100 hover:bg-forest hover:text-gold"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </header>
+      );
+    };
+
+    const Hero = () => {
+      const { identity, logos } = WORKSHOP_DATA;
+      return (
+        <section id="home" className="hero-bg relative text-white py-20 lg:py-28 border-b-4 border-gold">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/20 border border-gold text-gold text-xs font-bold tracking-widest uppercase">
+                <Icon name="globe" className="w-4 h-4" />
+                {identity.badge}
+              </span>
+
+              <div className="flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-lg">
+                {logos.ansoLogoUrl ? (
+                  <img src={logos.ansoLogoUrl} alt="ANSO Official Logo" className="h-8 object-contain" />
+                ) : (
+                  <div className="px-2.5 py-1 bg-white text-darkgreen font-bold text-xs rounded tracking-wider">
+                    ANSO
+                  </div>
+                )}
+                <span className="text-xs text-gray-200 font-medium">
+                  Alliance of International Science Organizations
+                </span>
+              </div>
+            </div>
+
+            <div className="max-w-4xl animate-fade-up">
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4">
+                {identity.shortName}
+              </h1>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-gray-100 leading-snug mb-5">
+                {identity.fullTitle}
+              </h2>
+              <p className="font-serif italic text-lg sm:text-xl text-gold mb-8">
+                “{identity.theme}” — <span className="not-italic text-sm sm:text-base text-gray-200">{identity.tagline}</span>
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 bg-darkgreen/80 border border-white/15 rounded-xl p-5 mb-10 backdrop-blur-sm">
+                <div className="flex items-start gap-3">
+                  <div className="p-2.5 rounded-lg bg-forest text-gold">
+                    <Icon name="calendar" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-gray-300">Date</p>
+                    <p className="font-semibold text-white text-sm sm:text-base">{identity.date}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="p-2.5 rounded-lg bg-forest text-gold">
+                    <Icon name="clock" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-gray-300">Schedule Window</p>
+                    <p className="font-semibold text-white text-sm sm:text-base">{identity.timeRange}</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <div className="p-2.5 rounded-lg bg-forest text-gold">
+                    <Icon name="map-pin" className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-gray-300">Venue</p>
+                    <p className="font-semibold text-white text-sm">{identity.venue}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="#program"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-gold text-darkgreen font-bold text-sm sm:text-base hover:bg-yellow-500 transition shadow-lg"
+                >
+                  <Icon name="list-ordered" className="w-5 h-5" />
+                  Explore Scientific Program
+                </a>
+                <a
+                  href="#project"
+                  className="inline-flex items-center gap-2 px-7 py-3.5 rounded-lg bg-white/10 border border-white/30 text-white font-semibold text-sm sm:text-base hover:bg-white/20 transition"
+                >
+                  <Icon name="book-open" className="w-5 h-5" />
+                  About the Project
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const AboutWorkshop = () => {
+      const { aboutWorkshop } = WORKSHOP_DATA;
+      return (
+        <section id="about" className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto text-center mb-14">
+              <span className="text-xs font-bold tracking-widest uppercase text-teal">Scientific Scope</span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-darkgreen mt-2 mb-4">
+                About the Workshop
+              </h2>
+              <div className="w-20 h-1 bg-gold mx-auto mb-6"></div>
+              <p className="text-gray-700 leading-relaxed text-base sm:text-lg">
+                {aboutWorkshop.description}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {aboutWorkshop.pillars.map((pillar, idx) => (
+                <div
+                  key={idx}
+                  className="bg-cream/60 border border-forest/15 rounded-xl p-6 hover:shadow-md transition"
+                >
+                  <div className="w-12 h-12 rounded-lg bg-forest text-gold flex items-center justify-center mb-4">
+                    <Icon name={pillar.icon} className="w-6 h-6" />
+                  </div>
+                  <h3 className="font-bold text-lg text-darkgreen mb-2">{pillar.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{pillar.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const ScientificProgram = () => {
+      const { schedule, openingBlock, programEnd } = WORKSHOP_DATA;
+      const [selectedCountry, setSelectedCountry] = useState("ALL");
+
+      const countries = ["ALL", "Egypt", "Brazil", "China", "Germany", "Turkey"];
+
+      return (
+        <section id="program" className="py-20 bg-cream border-y border-forest/10">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <span className="text-xs font-bold tracking-widest uppercase text-teal">Chronological Agenda</span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-darkgreen mt-2 mb-3">
+                Scientific Program
+              </h2>
+              <p className="text-sm font-bold tracking-wider uppercase text-forest">
+                WEDNESDAY, NOVEMBER 25, 2026 • HALL OF THE NRC RESEARCHERS&apos; CLUB
+              </p>
+              <div className="w-20 h-1 bg-gold mx-auto mt-4 mb-6"></div>
+
+              <div className="flex flex-wrap justify-center gap-2 mt-4">
+                {countries.map((c) => (
+                  <button
+                    key={c}
+                    onClick={() => setSelectedCountry(c)}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition ${
+                      selectedCountry === c
+                        ? "bg-forest text-white shadow"
+                        : "bg-white text-darkgreen border border-forest/20 hover:bg-forest/10"
+                    }`}
+                  >
+                    {c === "ALL" ? "All Sessions (Full Schedule)" : c}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative space-y-4">
+              {selectedCountry === "ALL" && (
+                <>
+                  <div className="bg-white rounded-xl p-5 border-l-4 border-teal shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <div className="flex items-center gap-3">
+                      <span className="px-3 py-1 rounded bg-teal/15 text-teal font-bold text-xs">
+                        {openingBlock.registration.time}
+                      </span>
+                      <span className="font-bold text-darkgreen text-base">
+                        {openingBlock.registration.title}
+                      </span>
+                    </div>
+                    <span className="text-xs font-bold text-gray-500">
+                      {openingBlock.registration.duration}
+                    </span>
+                  </div>
+
+                  <div className="bg-white rounded-xl p-5 border-l-4 border-gold shadow-sm">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 mb-3 border-b border-gray-100">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="px-3 py-1 rounded bg-gold/20 text-darkgreen font-bold text-xs">
+                          {openingBlock.opening.time}
+                        </span>
+                        <span className="font-bold text-darkgreen text-base">
+                          {openingBlock.opening.title}
+                        </span>
+                      </div>
+                      <span className="text-xs font-bold text-teal">
+                        {openingBlock.opening.duration}
+                      </span>
+                    </div>
+                    <ul className="space-y-1.5 text-sm text-gray-700">
+                      {openingBlock.opening.remarks.map((rem, i) => (
+                        <li key={i} className="flex flex-wrap items-baseline gap-1.5">
+                          <span className="font-bold text-forest">{rem.name}</span>
+                          <span>— {rem.role}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </>
+              )}
+
+              {schedule.map((item, idx) => {
+                if (item.type === "transition") {
+                  if (selectedCountry !== "ALL") return null;
+                  return (
+                    <div key={idx} className="flex items-center justify-center py-1">
+                      <span className="px-4 py-1 rounded-full bg-gray-200/80 text-gray-600 text-[11px] font-bold tracking-widest uppercase">
+                        {item.label}
+                      </span>
+                    </div>
+                  );
+                }
+
+                if (item.type === "break") {
+                  if (selectedCountry !== "ALL") return null;
+                  return (
+                    <div
+                      key={idx}
+                      className="my-6 rounded-xl bg-gradient-to-r from-darkgreen via-forest to-darkgreen text-white p-5 shadow-md border-l-4 border-gold flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="p-2.5 rounded-lg bg-gold/20 text-gold">
+                          <Icon name="coffee" className="w-6 h-6" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold text-gold tracking-wider block">
+                            {item.time}
+                          </span>
+                          <h4 className="font-bold text-base sm:text-lg tracking-wide">
+                            {item.title}
+                          </h4>
+                        </div>
+                      </div>
+                      <span className="inline-block px-3 py-1 rounded bg-white/15 text-xs font-semibold">
+                        {item.duration}
+                      </span>
+                    </div>
+                  );
+                }
+
+                if (selectedCountry !== "ALL" && item.country !== selectedCountry) {
+                  return null;
+                }
+
+                return (
+                  <div
+                    key={idx}
+                    className="bg-white rounded-xl p-6 shadow-sm border border-forest/15 hover:border-gold transition relative"
+                  >
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-3 mb-3 border-b border-gray-100">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="inline-flex items-center justify-center px-3 py-1 rounded-md bg-forest text-white font-bold text-sm">
+                          {item.number}
+                        </span>
+                        <span className="inline-flex items-center gap-1.5 text-sm font-bold text-darkgreen">
+                          <Icon name="clock" className="w-4 h-4 text-teal" />
+                          {item.time}
+                        </span>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cream border border-forest/20 text-darkgreen text-xs font-bold">
+                          <FlagImage src={item.flag} alt={`${item.country} flag`} className="w-5 h-3.5" />
+                          <span>{item.country}</span>
+                        </span>
+                        <span className="px-3 py-1 rounded-full bg-teal/10 text-teal text-xs font-bold">
+                          {item.duration}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="mb-2">
+                      <p className="text-xs uppercase tracking-wider text-gray-500 font-semibold">Speaker &amp; Affiliation</p>
+                      <h3 className="text-lg font-bold text-forest">{item.speaker}</h3>
+                      <p className="text-xs text-gray-600 mt-0.5 leading-relaxed">{item.affiliation}</p>
+                    </div>
+
+                    <div className="mt-3">
+                      <p className="text-xs uppercase tracking-wider text-gray-500 font-semibold">Lecture Title</p>
+                      <p className="text-base font-medium text-darkgreen leading-snug mt-0.5">
+                        “{item.title}”
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="mt-8 text-center">
+              <div className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-darkgreen text-gold font-bold text-sm tracking-widest uppercase shadow">
+                <Icon name="check-circle" className="w-5 h-5" />
+                {programEnd}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const SpeakerCard = ({ sp }) => {
+      const [expanded, setExpanded] = useState(false);
+      const shortLimit = 180;
+      const hasBio = Boolean(sp.bio && sp.bio.trim().length > 0);
+      const isLongBio = hasBio && sp.bio.length > shortLimit;
+      const displayedBio = !hasBio
+        ? ""
+        : expanded || !isLongBio
+        ? sp.bio
+        : sp.bio.slice(0, shortLimit).trim() + "...";
+
+      return (
+        <div className="bg-cream/50 border border-forest/15 rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-lg transition">
+          <div className="w-28 h-28 rounded-full bg-forest/10 border-2 border-gold flex items-center justify-center overflow-hidden mb-4 shadow-inner shrink-0">
+            {sp.portraitUrl ? (
+              <img src={sp.portraitUrl} alt={sp.speaker} className="w-full h-full object-cover" />
+            ) : (
+              <div className="flex flex-col items-center text-forest/60">
+                <Icon name="user" className="w-10 h-10" />
+                <span className="text-[9px] uppercase tracking-wider mt-1 font-semibold">Photo Slot</span>
+              </div>
+            )}
+          </div>
+
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-forest/15 text-xs font-bold text-darkgreen mb-3">
+            <FlagImage src={sp.flag} alt={`${sp.country} flag`} className="w-5 h-3.5" />
+            <span>{sp.country}</span>
+          </span>
+
+          <h3 className="font-bold text-lg text-darkgreen leading-snug mb-1">
+            {sp.speaker}
+          </h3>
+          <p className="text-[11px] text-gray-600 leading-relaxed mb-3">
+            {sp.affiliation}
+          </p>
+
+          {hasBio && (
+            <div className="w-full bg-white/80 border border-forest/10 rounded-xl p-3.5 text-left mb-3">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-forest block mb-1">
+                Biography
+              </span>
+              <p className="text-xs text-gray-700 leading-relaxed">
+                {displayedBio}
+              </p>
+              {isLongBio && (
+                <button
+                  type="button"
+                  onClick={() => setExpanded(!expanded)}
+                  className="mt-2 text-[11px] font-bold text-teal hover:text-forest underline focus:outline-none"
+                >
+                  {expanded ? "Show Less" : "Read Full Bio"}
+                </button>
+              )}
+            </div>
+          )}
+
+          <div className="w-full pt-3 border-t border-forest/10 mt-auto">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-teal block mb-1">
+              Session {sp.number} • {sp.time}
+            </span>
+            <p className="text-xs text-gray-700 font-medium leading-relaxed">
+              “{sp.title}”
+            </p>
+          </div>
+        </div>
+      );
+    };
+
+    const SpeakersSection = () => {
+      const speakers = WORKSHOP_DATA.schedule.filter((item) => item.type === "lecture");
+
+      return (
+        <section id="speakers" className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-14">
+              <span className="text-xs font-bold tracking-widest uppercase text-teal">Keynote Contributors</span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-darkgreen mt-2 mb-4">
+                International Speakers
+              </h2>
+              <div className="w-20 h-1 bg-gold mx-auto mb-4"></div>
+              <p className="text-sm text-gray-600">
+                Distinguished researchers presenting across the seven scientific sessions of ECO-AGRI FUTURE.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {speakers.map((sp) => (
+                <SpeakerCard key={sp.number} sp={sp} />
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const ProjectSection = () => {
+      const { project } = WORKSHOP_DATA;
+      return (
+        <section id="project" className="py-20 bg-darkgreen text-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto text-center mb-14">
+              <span className="inline-block px-3 py-1 rounded-full bg-gold/20 text-gold text-xs font-bold tracking-widest uppercase mb-3">
+                Collaborative Research Framework
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">
+                About the ANSO Research Project
+              </h2>
+              <div className="w-20 h-1 bg-gold mx-auto mb-6"></div>
+              <blockquote className="text-lg sm:text-xl font-serif italic text-gray-100 leading-relaxed bg-white/5 border border-white/15 rounded-xl p-6">
+                “{project.title}”
+              </blockquote>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-14">
+              <div className="bg-forest/60 border border-white/15 rounded-xl p-6 flex flex-col justify-center">
+                <span className="text-xs uppercase tracking-widest text-gold font-bold">Project Number</span>
+                <p className="text-2xl font-bold text-white mt-1">{project.number}</p>
+                <div className="mt-4 pt-4 border-t border-white/15">
+                  <span className="text-xs uppercase tracking-widest text-gold font-bold">Project Duration</span>
+                  <p className="text-base font-semibold text-gray-100 mt-1">{project.duration}</p>
+                </div>
+                <div className="mt-4 pt-4 border-t border-white/15">
+                  <span className="text-xs uppercase tracking-widest text-gold font-bold">Principal Investigator</span>
+                  <p className="text-sm font-semibold text-gray-100 mt-1">{project.piName}</p>
+                  <p className="text-xs text-gray-300 mt-0.5">{project.piAffiliation}</p>
+                </div>
+              </div>
+
+              <div className="lg:col-span-2 bg-forest/60 border border-white/15 rounded-xl p-6 flex flex-col justify-between">
+                <div>
+                  <p className="text-sm text-gray-200 leading-relaxed mb-5">
+                    {project.summary}
+                  </p>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+                    {project.countries.map((c) => (
+                      <div
+                        key={c.name}
+                        className="bg-darkgreen/80 border border-gold/40 rounded-lg p-3.5 text-center flex flex-col items-center"
+                      >
+                        <FlagImage src={c.flag} alt={`${c.name} flag`} className="w-10 h-7 mb-2 shadow-sm" />
+                        <span className="font-bold text-sm text-white block">{c.name}</span>
+                        <span className="text-[11px] text-emerald-300">{c.role}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-white/15">
+                  <span className="text-xs uppercase tracking-widest text-gold font-bold block mb-2">
+                    Alignment with UN Sustainable Development Goals (SDGs)
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {project.sdgs.map((sdg) => (
+                      <span
+                        key={sdg}
+                        className="px-2.5 py-1 rounded bg-white/10 border border-white/20 text-xs font-semibold text-emerald-200"
+                      >
+                        {sdg}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-14">
+              <h3 className="text-center font-serif text-2xl font-bold text-gold mb-8">
+                Major Research Areas &amp; Themes
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {project.themes.map((theme, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-3.5 bg-white/5 border border-white/10 rounded-xl p-4 hover:border-gold/60 transition"
+                  >
+                    <div className="p-2.5 rounded-lg bg-teal/20 text-gold shrink-0">
+                      <Icon name={theme.icon} className="w-5 h-5" />
+                    </div>
+                    <span className="text-sm font-semibold text-gray-100">{theme.title}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-white/5 border border-white/15 rounded-2xl p-6 sm:p-8">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-gold mb-4">
+                Key Scientific Objectives
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-sm text-gray-200">
+                {project.objectives.map((obj, idx) => (
+                  <div key={idx} className="flex items-start gap-2.5">
+                    <span className="px-2 py-0.5 rounded bg-gold/20 text-gold font-bold text-xs shrink-0 mt-0.5">
+                      {idx + 1}
+                    </span>
+                    <p className="leading-relaxed">{obj}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const PartnersSection = () => {
+      const { partners } = WORKSHOP_DATA.logos;
+      return (
+        <section id="partners" className="py-20 bg-cream border-b border-forest/10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="text-xs font-bold tracking-widest uppercase text-teal">Institutional Consortium</span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-darkgreen mt-2 mb-4">
+                Organizers &amp; International Partners
+              </h2>
+              <div className="w-20 h-1 bg-gold mx-auto"></div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {partners.map((partner, idx) => (
+                <div
+                  key={idx}
+                  className={`rounded-xl p-6 flex flex-col items-center justify-between text-center border transition ${
+                    idx === 0
+                      ? "bg-white border-2 border-gold shadow-md"
+                      : "bg-white border-forest/15 shadow-sm"
+                  }`}
+                >
+                  <div className="w-full h-24 rounded-lg bg-cream/70 border border-dashed border-forest/30 flex items-center justify-center p-3 mb-4">
+                    {partner.logoUrl ? (
+                      <img src={partner.logoUrl} alt={partner.name} className="max-h-full max-w-full object-contain" />
+                    ) : (
+                      <span className="text-xs font-bold text-forest/60 uppercase tracking-wider">
+                        Official Logo Placeholder
+                      </span>
+                    )}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-sm text-darkgreen leading-snug">{partner.name}</h3>
+                    <span className="inline-block mt-2 text-[11px] font-semibold text-teal">
+                      {partner.role}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const VenueSection = () => {
+      const { identity, contact } = WORKSHOP_DATA;
+      return (
+        <section id="venue" className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="text-xs font-bold tracking-widest uppercase text-teal">Location &amp; Schedule</span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-darkgreen mt-2 mb-4">
+                Venue &amp; Event Information
+              </h2>
+              <div className="w-20 h-1 bg-gold mx-auto"></div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+              <div className="bg-cream rounded-2xl p-8 border border-forest/15 flex flex-col justify-center space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-xl bg-forest text-gold">
+                    <Icon name="calendar" className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500">Date</h3>
+                    <p className="text-lg font-bold text-darkgreen">{identity.date}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-xl bg-forest text-gold">
+                    <Icon name="clock" className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500">Time</h3>
+                    <p className="text-lg font-bold text-darkgreen">{identity.timeRange}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="p-3 rounded-xl bg-forest text-gold">
+                    <Icon name="building-2" className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-gray-500">Venue</h3>
+                    <p className="text-lg font-bold text-darkgreen">{identity.venueShort}</p>
+                    <p className="text-sm text-gray-700">{identity.institution}</p>
+                    <p className="text-xs text-gray-500 mt-1">{contact.address}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl overflow-hidden border border-forest/20 shadow-sm bg-cream flex flex-col min-h-[320px]">
+                <iframe
+                  title="NRC Venue Location Map"
+                  src={contact.mapEmbedUrl}
+                  className="w-full flex-grow min-h-[270px] border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                ></iframe>
+                <div className="bg-darkgreen text-white px-4 py-2.5 flex items-center justify-between text-xs">
+                  <span className="text-gray-200">30°02&apos;09.5&quot;N 31°12&apos;29.3&quot;E</span>
+                  <a
+                    href={contact.mapExternalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 font-bold text-gold hover:underline"
+                  >
+                    <Icon name="external-link" className="w-3.5 h-3.5" />
+                    Open in Google Maps
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const ContactRegistrationSection = () => {
+      const { actionUrl, entries } = WORKSHOP_DATA.registrationForm;
+
+      const [formData, setFormData] = useState({
+        fullName: "",
+        email: "",
+        institution: "",
+        country: "",
+        affiliation: ""
+      });
+      const [submitted, setSubmitted] = useState(false);
+      const [submitting, setSubmitting] = useState(false);
+
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        setSubmitting(true);
+
+        const payload = new URLSearchParams();
+        payload.append(entries.fullName, formData.fullName);
+        payload.append(entries.email, formData.email);
+        payload.append(entries.institution, formData.institution);
+        payload.append(entries.country, formData.country);
+        payload.append(entries.affiliation, formData.affiliation);
+
+        try {
+          await fetch(actionUrl, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+            },
+            body: payload.toString()
+          });
+          setSubmitted(true);
+        } catch (err) {
+          alert("There was a network issue while sending your registration. Please try again.");
+        } finally {
+          setSubmitting(false);
+        }
+      };
+
+      return (
+        <section id="register" className="py-20 bg-cream border-t border-forest/15">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <span className="text-xs font-bold tracking-widest uppercase text-teal">Participation</span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-darkgreen mt-2 mb-4">
+                Workshop Registration
+              </h2>
+              <div className="w-20 h-1 bg-gold mx-auto"></div>
+            </div>
+
+            <div className="bg-white rounded-2xl p-8 shadow-sm border border-forest/15">
+              {submitted ? (
+                <div className="p-8 rounded-xl bg-forest/10 border border-forest text-center">
+                  <div className="w-12 h-12 rounded-full bg-forest text-white flex items-center justify-center mx-auto mb-3">
+                    <Icon name="check" className="w-6 h-6" />
+                  </div>
+                  <h4 className="font-bold text-xl text-darkgreen mb-2">
+                    Registration Submitted Successfully
+                  </h4>
+                  <p className="text-sm text-gray-700 mb-4">
+                    Thank you, <strong>{formData.fullName}</strong> ({formData.institution}, {formData.country}). Your registration has been recorded.
+                  </p>
+                  <button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({ fullName: "", email: "", institution: "", country: "", affiliation: "" });
+                    }}
+                    className="px-5 py-2 rounded-lg bg-forest text-white text-xs font-bold hover:bg-darkgreen transition"
+                  >
+                    Submit Another Entry
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold uppercase text-darkgreen mb-1">Full Name *</label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.fullName}
+                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                        placeholder="e.g., Prof. Dr. Jane Doe"
+                        className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-forest focus:outline-none text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold uppercase text-darkgreen mb-1">Email Address *</label>
+                      <input
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder="researcher@institution.edu"
+                        className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-forest focus:outline-none text-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold uppercase text-darkgreen mb-1">Institution / Organization *</label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.institution}
+                        onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
+                        placeholder="University or Research Centre"
+                        className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-forest focus:outline-none text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold uppercase text-darkgreen mb-1">Country *</label>
+                      <input
+                        type="text"
+                        required
+                        value={formData.country}
+                        onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                        placeholder="e.g., Egypt"
+                        className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-forest focus:outline-none text-sm"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold uppercase text-darkgreen mb-1">Professional Affiliation / Academic Title *</label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.affiliation}
+                      onChange={(e) => setFormData({ ...formData, affiliation: e.target.value })}
+                      placeholder="e.g., Associate Professor, Department of Agricultural Engineering"
+                      className="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:border-forest focus:outline-none text-sm"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-forest text-white font-bold text-sm hover:bg-darkgreen disabled:opacity-60 transition shadow-md flex items-center justify-center gap-2"
+                  >
+                    <Icon name="send" className="w-4 h-4" />
+                    {submitting ? "Submitting..." : "Submit Registration"}
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    const Footer = () => (
+      <footer className="bg-darkgreen text-gray-300 py-10 border-t-4 border-gold">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+          <div>
+            <p className="font-serif font-bold text-white text-lg">{WORKSHOP_DATA.identity.shortName}</p>
+            <p className="text-xs text-gray-400 mt-1">
+              {WORKSHOP_DATA.identity.fullTitle} • Project {WORKSHOP_DATA.project.number}
+            </p>
+          </div>
+          <div className="text-xs text-gray-400">
+            {WORKSHOP_DATA.identity.date} | {WORKSHOP_DATA.identity.institution}
+          </div>
+        </div>
+      </footer>
+    );
+
+    const App = () => (
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow">
+          <Hero />
+          <AboutWorkshop />
+          <ScientificProgram />
+          <SpeakersSection />
+          <ProjectSection />
+          <PartnersSection />
+          <VenueSection />
+          <ContactRegistrationSection />
+        </main>
+        <Footer />
+      </div>
+    );
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
